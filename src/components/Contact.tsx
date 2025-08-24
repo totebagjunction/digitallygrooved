@@ -22,17 +22,52 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your interest. We'll get back to you within 24 hours.",
-    });
-    
-    setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-    setIsSubmitting(false);
+
+    const data = {
+      access_key: "f9da89b2-8a25-4f08-9fda-9f498b22a876",  // <-- Replace this with your actual Web3Forms API key
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      service: formData.service,
+      message: formData.message,
+      subject: `New Contact Form Submission from ${formData.name}`,
+      redirect: "" // Optional: put a URL to redirect after success, or leave empty
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your interest. We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      } else {
+        toast({
+          title: "Submission Failed",
+          description: result.message || "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Network Error",
+        description: "Unable to send your message at this time. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -142,117 +177,116 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:glow-secondary transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-foreground">
-                Send Us a Message
-              </CardTitle>
-              <CardDescription className="text-muted-foreground">
-                Tell us about your project and we'll get back to you within 24 hours.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Name *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="bg-background/50"
-                    />
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold text-foreground">
+                  Send Us a Message
+                </CardTitle>
+                <CardDescription className="text-muted-foreground">
+                  Tell us about your project and we'll get back to you within 24 hours.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Name *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50"
+                      />
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="bg-background/50"
-                    />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="bg-background/50"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="service">Service Needed</Label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 bg-background/50 border border-input rounded-md text-foreground"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="react-nextjs">React/Next.js Development</option>
-                      <option value="wordpress">WordPress Website</option>
-                      <option value="shopify">Shopify Store</option>
-                      <option value="maintenance">Website Maintenance</option>
-                      <option value="optimization">Performance Optimization</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="bg-background/50 resize-none"
-                    placeholder="Tell us about your project, timeline, and any specific requirements..."
-                  />
-                </div>
-                
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-primary hover:glow-primary transition-smooth py-6"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Phone</Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="bg-background/50"
+                        minLength={8}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="service">Service Needed</Label>
+                      <select
+                        id="service"
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 bg-background/50 border border-input rounded-md text-foreground"
                       >
-                        Sending...
-                      </motion.div>
-                    ) : (
-                      <>
-                        Send Message
+                        <option value="">Select a service</option>
+                        <option value="react-nextjs">React/Next.js Development</option>
+                        <option value="wordpress">WordPress Website</option>
+                        <option value="shopify">Shopify Store</option>
+                        <option value="maintenance">Website Maintenance</option>
+                        <option value="optimization">Performance Optimization</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message *</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={4}
+                      className="bg-background/50 resize-none"
+                      placeholder="Tell us about your project, timeline, and any specific requirements..."
+                    />
+                  </div>
+                  
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-gradient-primary hover:glow-primary transition-smooth py-6"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
                         <motion.div
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
                         >
-                          <Send className="ml-2 h-4 w-4" />
+                          Sending...
                         </motion.div>
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
-              </form>
-            </CardContent>
-          </Card>
+                      ) : (
+                        <>
+                          Send Message
+                          <motion.div
+                            whileHover={{ x: 5 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Send className="ml-2 h-4 w-4" />
+                          </motion.div>
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
+                </form>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
 

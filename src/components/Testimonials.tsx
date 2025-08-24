@@ -4,49 +4,50 @@ import { motion } from "framer-motion";
 
 const Testimonials = () => {
   const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "CEO, TechStart Solutions",
-      content: "DigitalDoom transformed our online presence completely. The React application they built is fast, modern, and exactly what we needed to scale our business.",
-      rating: 5,
-      company: "TechStart Solutions"
-    },
-    {
-      name: "Michael Chen",
-      role: "Founder, EcoGreen Store",
-      content: "The Shopify store they created exceeded all our expectations. Sales increased by 40% within the first month after launch. Outstanding work!",
-      rating: 5,
-      company: "EcoGreen Store"
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Marketing Director, CreativeCorp",
-      content: "Professional, responsive, and incredibly talented. Our WordPress site looks amazing and performs flawlessly. Highly recommend DigitalDoom!",
-      rating: 5,
-      company: "CreativeCorp"
-    },
-    {
-      name: "David Thompson",
-      role: "Business Owner, LocalBiz",
-      content: "The maintenance service is exceptional. My website has never been more secure and fast. They handle everything so I can focus on my business.",
-      rating: 5,
-      company: "LocalBiz"
-    },
-    {
-      name: "Lisa Wang",
-      role: "Startup Founder, InnovateLab",
-      content: "From concept to launch, the team at DigitalDoom guided us through every step. The final product is a masterpiece of modern web development.",
-      rating: 5,
-      company: "InnovateLab"
-    },
-    {
-      name: "James Miller",
-      role: "E-commerce Manager, RetailPro",
-      content: "The performance optimization they provided made our site 3x faster. Customer satisfaction has improved dramatically. Worth every penny!",
-      rating: 5,
-      company: "RetailPro"
-    }
-  ];
+  {
+    name: "Aarav Sharma",
+    role: "CEO, Quantum Retail",
+    content: "DigitalDoom transformed our online presence completely. The React application they built is fast, modern, and exactly what we needed to scale our business.",
+    rating: 5,
+    company: "Quantum Retail"
+  },
+  {
+    name: "Devika Nair",
+    role: "Director of Sales, Spark Media",
+    content: "The Shopify store they created exceeded all our expectations. Sales increased by 40% within the first month after launch. Outstanding work!",
+    rating: 5,
+    company: "Spark Media"
+  },
+  {
+    name: "Siddharth Gupta",
+    role: "Marketing Director, CreativeCorp",
+    content: "Professional, responsive, and incredibly talented. Our WordPress site looks amazing and performs flawlessly. Highly recommend DigitalDoom!",
+    rating: 5,
+    company: "CreativeCorp"
+  },
+  {
+    name: "Ananya Iyer",
+    role: "Business Owner, LocalBiz",
+    content: "The maintenance service is exceptional. My website has never been more secure and fast. They handle everything so I can focus on my business.",
+    rating: 5,
+    company: "LocalBiz"
+  },
+  {
+    name: "Kunal Mehta",
+    role: "Startup Founder, InnovateLab",
+    content: "From concept to launch, the team at DigitalDoom guided us through every step. The final product is a masterpiece of modern web development.",
+    rating: 5,
+    company: "InnovateLab"
+  },
+  {
+    name: "Nisha Verma",
+    role: "E-commerce Manager, RetailPro",
+    content: "The performance optimization they provided made our site 3x faster. Customer satisfaction has improved dramatically. Worth every penny!",
+    rating: 5,
+    company: "RetailPro"
+  }
+];
+
 
   return (
     <section id="testimonials" className="py-20">

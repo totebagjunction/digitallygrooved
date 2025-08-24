@@ -89,7 +89,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
-          <p>&copy; {currentYear} DigitalDoom. All rights reserved. Crafted with passion for digital excellence.</p>
+          <p>&copy; {currentYear} DigitallyGrooved. All rights reserved. Crafted with passion for digital excellence.</p>
         </div>
       </div>
     </footer>

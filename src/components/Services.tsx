@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code2, Globe, ShoppingCart, Wrench, Rocket, Shield } from "lucide-react";
+import { Code2, Globe, ShoppingCart, Wrench, Rocket, Shield, Instagram,AppWindow, Search, Wallpaper, AtSign, ChartLine } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Services = () => {
@@ -39,7 +39,77 @@ const Services = () => {
       title: "Security & Hosting",
       description: "Secure hosting solutions with SSL certificates, regular backups, and protection against threats.",
       features: ["SSL Certificates", "Regular Backups", "Security Monitoring", "Cloud Hosting"]
-    }
+    },
+  {
+    icon: <Instagram className="h-12 w-12 text-primary" />,
+    title: "Social Media Marketing & Management",
+    description: "Comprehensive social media strategy, content, and growth services across major platforms.",
+    features: [
+      "Social Media Account Setup (Facebook, Instagram, LinkedIn, YouTube)",
+      "Content Calendar Creation",
+      "Daily/Weekly Posting & Engagement",
+      "Paid Ad Campaigns (Meta Ads – Facebook & Instagram Ads)",
+      "Influencer Collaboration Strategy",
+      "Social Media Growth Strategy"
+    ]
+  },
+  {
+    icon: <AppWindow className="h-12 w-12 text-primary" />,
+    title: "Content Creation & Design",
+    description: "Creative content production for social, branding, and promotional needs.",
+    features: [
+      "Reels/Short-form Video Editing",
+      "Motion Graphics & Animation",
+      "Posters, Banners & Flyers (Static + Motion)",
+      "Branding Material (Logos, Brand Kits, Templates)",
+      "Photography & Videography Direction (if client provides raw content)"
+    ]
+  },
+  {
+    icon: <Search className="h-12 w-12 text-primary" />,
+    title: "SEO (Search Engine Optimization)",
+    description: "Boost your search engine visibility with technical, local, and content-driven SEO.",
+    features: [
+      "On-Page SEO Optimization",
+      "Off-Page SEO (Backlinking, Guest Posting)",
+      "Local SEO (Google My Business Optimization)",
+      "Keyword Research & Ranking Strategy",
+      "Monthly SEO Reporting"
+    ]
+  },
+  {
+    icon: <Wallpaper className="h-12 w-12 text-primary" />,
+    title: "Paid Ads & Performance Marketing",
+    description: "ROI-driven ad strategies across top platforms to generate qualified leads and conversions.",
+    features: [
+      "Meta Ads (Facebook + Instagram)",
+      "Google Ads (Search, Display, Shopping, YouTube)",
+      "LinkedIn Ads (for B2B clients)",
+      "Campaign Setup, Monitoring & Optimization"
+    ]
+  },
+  {
+    icon: <AtSign className="h-12 w-12 text-primary" />,
+    title: "Email & WhatsApp Marketing",
+    description: "Direct marketing strategies through personalized email and WhatsApp campaigns.",
+    features: [
+      "Email Campaign Setup (Design + Automation)",
+      "Newsletter Creation",
+      "WhatsApp Marketing Strategy & Automation"
+    ]
+  },
+  {
+    icon: <ChartLine className="h-12 w-12 text-primary" />,
+    title: "Branding & Strategy",
+    description: "Strategic brand building and go-to-market planning to strengthen market presence.",
+    features: [
+      "Brand Identity Development",
+      "Digital Marketing Strategy Roadmap",
+      "Market Research & Competitor Analysis",
+      "Sales Funnel Building"
+    ]
+  }
+
   ];
 
   return (
